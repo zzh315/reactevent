@@ -1,11 +1,19 @@
-import { useParams, useLoaderData, json } from "react-router-dom";
+import {
+  useParams,
+  useLoaderData,
+  json,
+  useRouteLoaderData,
+} from "react-router-dom";
 import { Link } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
 function EventDetailPage() {
   // const params = useParams();
   // console.log(params);
-  const data = useLoaderData();
+  // const data = useLoaderData();
+
+  const data = useRouteLoaderData("event-detail");
+  // this can access loader data in parent routes.
 
   // when using useLoaderData on Response#construtctor# object, it automatically returns data(first argument) in the Response object.
   // const event = data.event;

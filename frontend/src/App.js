@@ -50,11 +50,17 @@ const router = createBrowserRouter([
           },
           {
             path: ":eventId",
-            element: <EventDetailPage />,
+            id: "event-detail",
             loader: eventDetailLoader,
+            children: [
+              { index: true, element: <EventDetailPage /> },
+              {
+                path: ":eventId/edit",
+                element: <EditEventPage />,
+              },
+            ],
           },
           { path: "new", element: <NewEventPage /> },
-          { path: ":eventId/edit", element: <EditEventPage /> },
         ],
       }, // "/" at the start means this is absolute path, aka should be "/root/products", removing "/" convert to relative path
     ],
