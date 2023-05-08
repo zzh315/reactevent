@@ -1,4 +1,11 @@
-import { Form, useNavigate, useNavigation } from "react-router-dom";
+import {
+  Form,
+  useNavigate,
+  useNavigation,
+  useActionData,
+  json,
+  redirect,
+} from "react-router-dom";
 
 import classes from "./EventForm.module.css";
 
@@ -12,8 +19,18 @@ function EventForm({ method, event }) {
     navigate("..");
   }
 
+  const responseData = useActionData();
+  // this is the error response
+
   return (
-    <Form method="POST" className={classes.form}>
+    <Form method={method} className={classes.form}>
+      {responseData && responseData.errors && (
+        <ul>
+          {Object.values(responseData.errors).map((err) => {
+            return <li key={err}>{err}</li>;
+          })}
+        </ul>
+      )}
       <p>
         <label htmlFor="title">Title</label>
         <input
@@ -67,3 +84,37 @@ function EventForm({ method, event }) {
 }
 
 export default EventForm;
+
+export async function action({ request, params }) {
+  const method = request.method;
+  const eventId = params.eventId;
+  const data = await request.formData();
+  // need to use <Form /> in the form component, and need to use .get below to get the data(the argument below are name atribute in the form inputs)
+  const eventData = {
+    title: data.get("title"),
+    image: data.get("image"),
+    date: data.get("date"),
+    description: data.get("description"),
+  };
+
+  let url = "http://localhost:8080/events";
+  if (method === "PATCH") {
+    url = "http://localhost:8080/events/" + eventId;
+  }
+
+  const response = await fetch(url, {
+    method: method,
+    body: JSON.stringify(eventData),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.status === 422) {
+    return response;
+  } //return response in action allow response to be used in components, although async, react-router-dom auto await the data, so no need to await and automatcailly parsed
+
+  if (!response.ok) {
+    throw json({ message: "Could not save event" }, { status: 500 });
+  }
+
+  return redirect("/events");
+}

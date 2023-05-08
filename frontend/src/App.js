@@ -31,7 +31,7 @@ import EditEventPage from "./pages/EditEventPage";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/Error";
 import EventsLayout from "./pages/EventsRoot";
-import { action as newEventAction } from "./pages/NewEventPage";
+import { action as eventFormAction } from "./components/EventForm";
 import { action as deleteEventAction } from "./pages/EventDetailPage";
 
 const router = createBrowserRouter([
@@ -61,12 +61,13 @@ const router = createBrowserRouter([
                 action: deleteEventAction,
               },
               {
-                path: ":eventId/edit",
+                path: "edit",
                 element: <EditEventPage />,
+                action: eventFormAction,
               },
             ],
           },
-          { path: "new", element: <NewEventPage />, action: newEventAction },
+          { path: "new", element: <NewEventPage />, action: eventFormAction },
           //Actions are called whenever the app sends a non-get submission ("post", "put", "patch", "delete") to your route
         ],
       }, // "/" at the start means this is absolute path, aka should be "/root/products", removing "/" convert to relative path
