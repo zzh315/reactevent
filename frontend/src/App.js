@@ -33,12 +33,14 @@ import ErrorPage from "./pages/Error";
 import EventsLayout from "./pages/EventsRoot";
 import { action as eventFormAction } from "./components/EventForm";
 import { action as deleteEventAction } from "./pages/EventDetailPage";
+import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
 
 const router = createBrowserRouter([
   {
     path: "/", // "/root" the comment below refers to this link
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    // action: newsletterAction,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -71,6 +73,11 @@ const router = createBrowserRouter([
           //Actions are called whenever the app sends a non-get submission ("post", "put", "patch", "delete") to your route
         ],
       }, // "/" at the start means this is absolute path, aka should be "/root/products", removing "/" convert to relative path
+      {
+        path: "newsletter",
+        element: <NewsletterPage />,
+        action: newsletterAction,
+      },
     ],
   },
 ]);

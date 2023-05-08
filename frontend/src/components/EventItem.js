@@ -10,6 +10,7 @@ function EventItem({ event }) {
     if (proceed) {
       submit(null, { method: "DELETE" });
     }
+    //triggers DELETE request and thus action without being in a form
   }
 
   return (
