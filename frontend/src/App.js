@@ -31,6 +31,7 @@ import EditEventPage from "./pages/EditEventPage";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/Error";
 import EventsLayout from "./pages/EventsRoot";
+import { action as newEventAction } from "./pages/NewEventPage";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
               },
             ],
           },
-          { path: "new", element: <NewEventPage /> },
+          { path: "new", element: <NewEventPage />, action: newEventAction },
         ],
       }, // "/" at the start means this is absolute path, aka should be "/root/products", removing "/" convert to relative path
     ],

@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"dasd","image":"https://financefeeds.com/wp-content/uploads/2021/09/BitConnect.jpg","date":"2023-05-05","description":"dasda","id":"41b9fd9f-5264-4697-919f-baa5ded23c3b"},{"title":"BIsh","image":"https://financefeeds.com/wp-content/uploads/2021/09/BitConnect.jpg","date":"2023-05-18","description":"BItcOnnnect!","id":"662608c6-6074-4044-9073-7ddda4fca575"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
